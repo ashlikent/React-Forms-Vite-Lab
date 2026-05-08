@@ -14,6 +14,7 @@ const testData = [
 
 // Filter
 const noop = () => {};
+
 test("uses a prop of 'search' to display the search term in the input field", () => {
   render(<Filter search="testing" onSearchChange={noop} />);
 
@@ -21,7 +22,8 @@ test("uses a prop of 'search' to display the search term in the input field", ()
 });
 
 test("calls the onSearchChange callback prop when the input is changed", () => {
-  const onChange = vi.fn()
+  const onChange = vi.fn();
+
   render(<Filter search="testing" onSearchChange={onChange} />);
 
   fireEvent.change(screen.queryByPlaceholderText(/Search/), {
@@ -79,4 +81,3 @@ test("the shopping filters based on the search term to include partial matches",
   expect(screen.queryByText("Lettuce")).not.toBeInTheDocument();
   expect(screen.queryByText("Yogurt")).not.toBeInTheDocument();
 });
-
